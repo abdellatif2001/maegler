@@ -1,0 +1,82 @@
+/* Start Variables */
+:root{
+    --primary-color: #ffbc20;
+    --hover-color: #f2c335;
+    --gray-color: #F2F2F2;
+    --p-tag-color: #777;
+    --dark-color: #2d2b2c;
+    --header-height: 73.56px;
+    --trans-duration: 0.4s;
+    --section-padding: 30px;
+}
+/* End Variables */
+/* Global Rules */
+html{
+    scroll-behavior: smooth;
+}
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--gray-color);
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+}
+::selection{
+    background-color: var(--primary-color);
+    color: white;
+}
+/* .signup-body{
+    background-color: white;
+} */
+ul{
+    list-style: none;
+}
+a:hover{
+  text-decoration: none;
+}
+/* End Media Queries */
+/* End Variables */
+
+
+/* Start Pagination */
+.container .custom-pagin{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.pagination > div > a
+{
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.pagination > div > a:focus,
+.pagination > div > a:hover,
+.pagination > div > span:focus,
+.pagination > div > span:hover
+{
+    color: #5a5a5a;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > .active > a
+{
+    color: white;
+    background-color: var(--primary-color) !Important;
+    border: solid 1px var(--primary-color) !Important;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: var(--primary-color) !Important;
+    border: solid 1px var(--primary-color);
+}
+/* End Pagination */

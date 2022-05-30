@@ -1,0 +1,100 @@
+/* Start Variables */
+:root{
+    --primary-color: #ffbc20;
+    --hover-color: #f2c335;
+    --gray-color: #F2F2F2;
+    --p-tag-color: #777;
+    --dark-color: #2d2b2c;
+    --header-height: 73.56px;
+    --trans-duration: 0.4s;
+    --section-padding: 30px;
+}
+/* End Variables */
+/* Global Rules */
+html{
+    scroll-behavior: smooth;
+}
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--gray-color);
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+}
+::selection{
+    background-color: var(--primary-color);
+    color: white;
+}
+/* .signup-body{
+    background-color: white;
+} */
+ul{
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+/* End Media Queries */
+
+/* Start Navbar */
+.navbar{
+    box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.048);
+}
+.navbar .myNav{
+    flex-direction: row-reverse;
+}
+.navbar .navbar-brand .logo{
+    width: 80px;
+}
+.navbar-light .navbar-toggler{
+    border-color: transparent;
+}
+.navbar-nav .nav-item .login-btns{
+    color: #2d2b2c;
+    transition: .4s;
+    margin-right: 20px;
+}
+.navbar-nav .nav-item .login-btns:hover{
+    color: #ffbc20; 
+}
+.navbar-nav .nav-item .cta-btns{
+    background-color: #ffbc20;
+    color: #2d2b2c;
+    border-radius: 5px;
+    margin-left: 10px;
+    transition: var(--trans-duration);
+}
+
+.navbar-nav .nav-item .cta-btns .fa-solid{
+    margin-right: 5px;
+}
+.navbar-nav .nav-item .cta-btns:hover{
+    color: white;
+}
+@media (max-width: 991px) {
+    .navbar-nav .nav-item .login-btns{
+        margin-right: 0;
+        font-size: 13px;
+    }
+    .navbar-nav .nav-item .cta-btns{
+        width: fit-content;
+        margin-left: 0;
+        padding: 8px;
+        background-color: transparent;
+        font-size: 13px;
+        border: 2px solid var(--primary-color);
+        border-radius: 5px;
+    }
+    .navbar-nav .nav-item .cta-btns:hover{
+        color: var(--primary-color);
+    }
+}
+
+  /* End Navbar */

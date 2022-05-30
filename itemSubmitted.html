@@ -1,0 +1,64 @@
+<!-- <?php
+    session_start();
+    $con=mysqli_connect('127.0.0.1','root','','maegler') or die(mysqli_error($con));
+    $verification_code = $_SESSION['verification_code'];
+    if (isset($_POST['verify'])) {
+        extract($_POST);
+        if ($verification_code == $verification_input ) {
+            echo "your email has been verified";
+            $email = $_SESSION['email'];
+            $query = "UPDATE users SET verification_status = 'verified' where email = '$email'";
+            mysqli_query($con,$query) or die(mysqli_error($con));
+            header('location:login.php');
+        }
+        else {
+            echo "Invalid verification code";
+        }
+    }
+?> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <!-- Bootstrap -->
+            <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+            integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+            crossorigin="anonymous"
+          />
+          <!-- style link -->
+          <link rel="stylesheet" href="css/maegler.css" />
+          <!-- normalize library -->
+          <link rel="stylesheet" href="css/normalize.css" />
+          <!-- font awesome library -->
+      
+          <script src="https://kit.fontawesome.com/06b58a135e.js" crossorigin="anonymous"></script>
+          <link rel="stylesheet" href="css/all.min.css" />
+          <!-- Google fonts -->
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+          />
+    <title>Submitted</title>
+</head>
+<body>
+    <div class="container">
+        <div class="verify-holder">
+            <img class="logo" src="images/logo-dark.png" alt="">
+            <div class="message">
+                <img src="images/submitted-dark.png" alt="">
+                <p>your article is under review, checkout your email in the next 3 days</p>
+            </div>
+            <div class="sec-footer">
+                <a href="index.html" class="text-capitalize">click here to back to the dashboard</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
