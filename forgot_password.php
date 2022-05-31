@@ -1,16 +1,38 @@
 <?php  
     session_start();
     include 'tables.php';
+    require __DIR__ . '/vendor/autoload.php';
+    use Twilio\Rest\Client;
+    $account_sid = "ACa9fe5065685bdc1d35523de931bf664b";
+    $auth_token = '512c73c56a0b2fdc730b9b910ad0e357';
+    $twilio_number = "+1 812 505 9179";
     $Data = new Data();
     if (isset($_POST['submit'])) {
         # code...
         extract($_POST);
         $verification_code = rand(100000,999999);
+        $con=mysqli_connect('127.0.0.1','root','','maegler') or die(mysqli_error($con));
+        $query = "SELECT number from users where email ='$email'";
+        $result = mysqli_query($con,$query) or die(mysqli_error($con));
+        $row = mysqli_fetch_assoc($result);
+        $number = $row['number'];
         $_SESSION['verification_code'] = $verification_code;
+        $client = new Client($account_sid, $auth_token);
+        try {
+            //code...
+            $client->messages->create(
+                // Where to send a text message (your cell phone?)
+                "$number",
+                array(
+                    'from' => $twilio_number,
+                    'body' => "hey it's maegler your verification code is $verification_code"
+                )
+            );
+        } catch (\Throwable $th) {
+            //throw $th;
+            
+        }
         $_SESSION['email'] = $email;
-        $subject = "verifiy your email";
-        $body = "your verification_code $verification_code";
-        $sender = "From: maegler@shop.com";
         $Data->update_verification_code($verification_code,$email);
         header('location:password_update.php');
 }

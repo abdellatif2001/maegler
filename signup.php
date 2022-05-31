@@ -2,10 +2,15 @@
     session_start();
     $con=mysqli_connect('127.0.0.1','root','','maegler') or die(mysqli_error($con));
     include 'tables.php';
+    require __DIR__ . '/vendor/autoload.php';
+    use Twilio\Rest\Client;
+    $account_sid = "ACa9fe5065685bdc1d35523de931bf664b";
+    $auth_token = '512c73c56a0b2fdc730b9b910ad0e357';
+    $twilio_number = "+1 812 505 9179";
     $Data = new Data();
 
     // $fname = $email = $number = "";
-    $nameErr = $emailErr = $numberErr = $passErr = 'visibility:hidden';
+    $nameErr = $emailErr = $numberErr = $passErr = $nu_st = 'visibility:hidden';
 
     if (isset($_POST['submit'])) {
         extract($_POST);
@@ -35,10 +40,29 @@
                             else {
                                 $verification_code = rand(100000,999999);
                                 $_SESSION['verification_code'] = $verification_code;
+                                if (substr($number, 0, 1) == 0) {
+                                    # code...
+                                    $number = '+212'.substr($number, 1);
+                                }
+
+
+                                $client = new Client($account_sid, $auth_token);
+                                try {
+                                    //code..
+                                    $client->messages->create(
+                                        // Where to send a text message (your cell phone?)
+                                        "$number",
+                                        array(
+                                            'from' => $twilio_number,
+                                            'body' => "hey it's maegler your verification code is $verification_code"
+                                        )
+                                    );
+                                } catch (\Throwable $th) {
+                                    //throw $th;
+                                    $nu_st = "visibility:show";
+                                }
+
                                 $_SESSION['email'] = $email;
-                                $subject = "verifiy your email";
-                                $body = "your verification_code $verification_code";
-                                $sender = "From: maegler@shop.com";
                                 // if(!mail($email, $subject, $body, $sender)){
                                     //echo '<div id ="error" class="text-danger">email already exist</div>';
             
@@ -133,6 +157,7 @@
 
                     <input type="text" name="number" placeholder="phone number" id="number">
                     <span class="text-capitalize" style=<?=$numberErr?> id="spanErr">phone number required</span>
+                    <span class="text-capitalize" style=<?=$nu_st?> id="spanErr">phone number incorrect</span>
 
                     <input type="password" name="password" placeholder="password" id="password">
                     <span class="password text-capitalize" id="spanErr"></span>
